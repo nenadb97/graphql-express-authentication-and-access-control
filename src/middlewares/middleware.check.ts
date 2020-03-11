@@ -8,6 +8,10 @@ export enum MiddlewareType {
 
 export const middlewareCheck = (data: IMiddlewareCheckInputType[], context: IContext) => {
     data.forEach((item) => {
+        /*
+        In case you will in future implement more middlewares which should run on resolver level,
+        add them in switch case and handle situation based on values obtained from context
+        */
         switch (item.type) {
             case MiddlewareType.ACL:
                 if (!isAllowed(context.user, item.roles)) {

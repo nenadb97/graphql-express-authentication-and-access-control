@@ -7,7 +7,10 @@ export const TypeDefinition = {
     Unauthorized: 0
 };
 
+// Load GraphQL files for authorized schema
 const authorizedGraphql = glob.sync(join(__dirname, './authorized/**/*.graphql'));
+
+// Load GraphQL files for unauthorized schema
 const unauthorizedGraphql = glob.sync(join(__dirname, './unauthorized/**/*.graphql'));
 
 export const generateTypeDefinitions = (definitionType) => {

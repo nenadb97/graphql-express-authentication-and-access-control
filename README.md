@@ -8,6 +8,7 @@
 # Requirements
 - npm
 - node
+- GraphQL client ( Insomnia )
 
 # Usage
 - npm install

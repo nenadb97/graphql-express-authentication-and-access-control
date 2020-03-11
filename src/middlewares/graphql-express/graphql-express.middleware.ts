@@ -12,6 +12,7 @@ export const generateMiddlewareGraphql = () => {
                 isAuthenticated: false
             };
 
+            // If user is authenticated attach additional info to context
             if (request.isAuthenticated) {
                 Object.assign(context, {
                     isAuthenticated: true,

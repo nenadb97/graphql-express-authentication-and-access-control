@@ -1,9 +1,10 @@
-import { MESSAGE_YOU_DONT_HAVE_REQUIRED_PERMISSIONS } from "../helpers/messages";
+import { MESSAGE_UNAUTHORIZED, MESSAGE_YOU_DONT_HAVE_REQUIRED_PERMISSIONS } from "../helpers/messages";
 import { isAllowed } from "./access-control/access-control.middleware";
 import { IContext, IMiddlewareCheckInputType } from "../interfaces/middleware.check.interface";
 
 export enum MiddlewareType {
-    ACL
+    ACL,
+    AUTH
 }
 
 export const middlewareCheck = (data: IMiddlewareCheckInputType[], context: IContext) => {
@@ -19,6 +20,13 @@ export const middlewareCheck = (data: IMiddlewareCheckInputType[], context: ICon
                 }
 
                 break;
+
+            case MiddlewareType.AUTH:
+                if (!context.isAuthenticated) {
+                    throw new Error(MESSAGE_UNAUTHORIZED);
+                }
+                break;
+
             default:
                 break;
         }

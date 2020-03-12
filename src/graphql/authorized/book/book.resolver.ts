@@ -9,18 +9,18 @@ const bookMutationService = new BookMutationService();
 const bookResolver = {
     Query: {
         getBookById(parent, {id}, ctx) {
-            middlewareCheck([{type: MiddlewareType.ACL, roles: [USER_ROLES.View]}], ctx);
+            middlewareCheck([{ type: MiddlewareType.AUTH }, {type: MiddlewareType.ACL, roles: [USER_ROLES.View]}], ctx);
 
             return bookQueryService.getById(id);
         },
         getAllBooks(parent, _, ctx) {
-            middlewareCheck([{type: MiddlewareType.ACL, roles: [USER_ROLES.View]}], ctx);
+            middlewareCheck([{ type: MiddlewareType.AUTH }, {type: MiddlewareType.ACL, roles: [USER_ROLES.View]}], ctx);
             return bookQueryService.getAll();
         }
     },
     Mutation: {
         deleteBookById(parent, {id}, ctx) {
-            middlewareCheck([{type: MiddlewareType.ACL, roles: [USER_ROLES.Delete]}], ctx);
+            middlewareCheck([{ type: MiddlewareType.AUTH }, {type: MiddlewareType.ACL, roles: [USER_ROLES.Delete]}], ctx);
             return bookMutationService.deleteById(id);
         }
     }

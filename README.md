@@ -14,5 +14,5 @@
 - npm install
 - npm run start
 
-# Medium article: 
+# My Medium article on this topic: 
 https://medium.com/@nenadborovanin/expressjs-graphql-authentication-access-control-c5c8fe360b07
